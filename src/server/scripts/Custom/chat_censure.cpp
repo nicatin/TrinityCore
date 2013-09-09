@@ -49,6 +49,10 @@ void CheckMessage(Player* player, std::string& msg, uint32 lang, Player* /*recei
     checks[4] =".ru";
     checks[5] ="wowdm";
     checks[6] ="www.";
+    checks[7] =".no-ip";
+    checks[8] =".biz";
+    checks[9] =".eu";
+    checks[10] =".bg";
     for (int i = 0; i < cheksSize; ++i)
         if (lower.find(checks[i]) != std::string::npos)
         {
