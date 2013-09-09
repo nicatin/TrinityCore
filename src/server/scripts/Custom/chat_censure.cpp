@@ -52,8 +52,8 @@ void CheckMessage(Player* player, std::string& msg, uint32 lang, Player* /*recei
     for (int i = 0; i < cheksSize; ++i)
         if (lower.find(checks[i]) != std::string::npos)
         {
-            msg = "wowdm.net крутой сервер";
-            ChatHandler(player).PSendSysMessage("wowdm.net крутой сервер");         
+            msg = "Eclipse Tournament";
+            ChatHandler(player).PSendSysMessage("Eclipse Tournament");         
             return;
         }
 } 
