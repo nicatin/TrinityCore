@@ -21,21 +21,21 @@ class renamer : public CreatureScript
     {   
         if (ArenaTeam *at = sObjectMgr->GetArenaTeamById(player->GetArenaTeamId(0)))
             if (at->GetCaptain() == player->GetGUID())
-                player->ADD_GOSSIP_ITEM_EXTENDED(0, "Переименовать 2x2", GOSSIP_SENDER_MAIN, 1002, "", 0, true);
+                player->ADD_GOSSIP_ITEM_EXTENDED(0, "Rename 2x2", GOSSIP_SENDER_MAIN, 1002, "", 0, true);
 
         if (ArenaTeam *at = sObjectMgr->GetArenaTeamById(player->GetArenaTeamId(1)))
             if (at->GetCaptain() == player->GetGUID())
-                player->ADD_GOSSIP_ITEM_EXTENDED(0, "Переименовать 3x3", GOSSIP_SENDER_MAIN, 1003, "", 0, true);
+                player->ADD_GOSSIP_ITEM_EXTENDED(0, "Rename 3x3", GOSSIP_SENDER_MAIN, 1003, "", 0, true);
 
         if (ArenaTeam *at = sObjectMgr->GetArenaTeamById(player->GetArenaTeamId(2)))
             if (at->GetCaptain() == player->GetGUID())
-                player->ADD_GOSSIP_ITEM_EXTENDED(0, "Переименовать 5x5", GOSSIP_SENDER_MAIN, 1004, "", 0, true);
+                player->ADD_GOSSIP_ITEM_EXTENDED(0, "Rename 5x5", GOSSIP_SENDER_MAIN, 1004, "", 0, true);
 
         if (Guild* guild = sObjectMgr->GetGuildById(player->GetGuildId()))
             if (guild->GetLeaderGUID() == player->GetGUID())
-                player->ADD_GOSSIP_ITEM_EXTENDED(0, "Переименовать гильдию", GOSSIP_SENDER_MAIN, 1005, "", 0, true);
+                player->ADD_GOSSIP_ITEM_EXTENDED(0, "Rename гильдию", GOSSIP_SENDER_MAIN, 1005, "", 0, true);
 
-        player->ADD_GOSSIP_ITEM_EXTENDED( 4, "Счастливого пути!", GOSSIP_SENDER_MAIN, 1224, "", 0, true);
+        player->ADD_GOSSIP_ITEM_EXTENDED( 4, "Bye!", GOSSIP_SENDER_MAIN, 1224, "", 0, true);
         player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE,pCreature->GetGUID());
         return true;
     }
