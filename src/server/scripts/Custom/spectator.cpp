@@ -138,7 +138,7 @@ class spectator : public CreatureScript
         HONOR_COST = sWorld->getIntConfig(CONFIG_ARENA_SPECTATOR_PRICE_HONOR);
         if (player->InBattlegroundQueue())
         {
-            pCreature->MonsterWhisper("You are join BG or ARENA please leave que", player->GetGUID(), true);
+            pCreature->MonsterWhisper("Please Leave Any Type of Battleground / Arena Queues", player->GetGUID(), true);
             player->CLOSE_GOSSIP_MENU();
             return false;
         }
@@ -157,13 +157,13 @@ class spectator : public CreatureScript
         {
             case 0:
             {
-                //"Никого нет на арене, идите спать";
+                //"Not players on arena";
                 player->ADD_GOSSIP_ITEM( 7, "Arena is empty", GOSSIP_SENDER_MAIN, 1224);
                 break;
             }
             default:
             {
-                //"Ввести никнейм"
+                //player nickname"
                 player->ADD_GOSSIP_ITEM_EXTENDED(0, "Spectate game of specific person", GOSSIP_SENDER_MAIN, 1001, "", 0, true);
                 if (var & 1)
                 {
