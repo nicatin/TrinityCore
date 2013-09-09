@@ -57,18 +57,18 @@ bool passChecks(Player * pPlayer, const char * name)
         WorldSession * m_session = pPlayer->GetSession();
         if(!pBounty)
         {
-                m_session->SendNotification("Игрок не в сети или его не сужешствует");
+                m_session->SendNotification("Player is does not exist");
                 return false;
         }
         QueryResult result = CharacterDatabase.PQuery("SELECT * FROM bounties WHERE guid ='%u'", pBounty->GetGUID());
         if(result)
         {
-                m_session->SendNotification("За это убийство уже назначена награда");
+                m_session->SendNotification("For this killing is a reward");
                 return false;
         }
         if(pPlayer->GetGUID() == pBounty->GetGUID())
         {
-                m_session->SendNotification("Себя нельзя убить");
+                m_session->SendNotification("You can not kill yourself");
                 return false;
         }
         return true;
@@ -79,15 +79,15 @@ void alertServer(const char * name, int msg)
         std::string message;
         if(msg == 1)
         {
-                message = "Поступил заказ на убийство ";
+                message = "Received an order to murder ";
                 message += name;
-                message += ". Убей его и получи награду!";
+                message += "Kill him and get reward!";
         }
         else if(msg == 2)
         {
-                message = "Игрок ";
+                message = "Player ";
                 message += name;
-                message += " убит!";
+                message += " Killed!";
         }
         sWorld->SendServerMessage(SERVER_MSG_STRING, message.c_str(), 0);
 }
@@ -115,7 +115,7 @@ bool hasCurrency(Player * pPlayer, uint32 required, int currency)
                         uint32 currenthonor = pPlayer->GetArenaPoints();
                         if(currenthonor < required)
                         {
-                                m_session->SendNotification("Недостаточно очков арены");
+                                m_session->SendNotification("Not enough points arena");
                                 return false;
                         }
                         pPlayer->SetArenaPoints(currenthonor - required);
@@ -125,7 +125,7 @@ bool hasCurrency(Player * pPlayer, uint32 required, int currency)
                         {
                         if(!pPlayer->HasItemCount(TOKEN_ID, required))
                         {
-                                m_session->SendNotification("У вас не хватает арен очков!");
+                                m_session->SendNotification("You do not have enough arena points!");
                                 return false;
                         }
                         pPlayer->DestroyItemCount(TOKEN_ID, required, true, false);
@@ -187,7 +187,7 @@ class BountyHunter : public CreatureScript
 #if SET_CURRENCY == 0
                                         if(     Bounties->GetRowCount() > 1)
                                         {
-                                                pPlayer->ADD_GOSSIP_ITEM(GOSSIP_ICON_BATTLE, "Заказы: ", GOSSIP_SENDER_MAIN, 1);
+                                                pPlayer->ADD_GOSSIP_ITEM(GOSSIP_ICON_BATTLE, "Orders: ", GOSSIP_SENDER_MAIN, 1);
                                                 do
                                                 {
                                                         Field * fields = Bounties->Fetch();
@@ -203,7 +203,7 @@ class BountyHunter : public CreatureScript
                                         }
                                         else
                                         {
-                                                pPlayer->ADD_GOSSIP_ITEM(GOSSIP_ICON_BATTLE, "Заказы: ", GOSSIP_SENDER_MAIN, 1);
+                                                pPlayer->ADD_GOSSIP_ITEM(GOSSIP_ICON_BATTLE, "Orders: ", GOSSIP_SENDER_MAIN, 1);
                                                 Field * fields = Bounties->Fetch();
                                                 std::string option;
                                                 QueryResult name = CharacterDatabase.PQuery("SELECT name FROM characters WHERE guid='%u'", fields[0].GetUInt64());
@@ -219,7 +219,7 @@ class BountyHunter : public CreatureScript
 #if SET_CURRENCY == 1
                                         if(     Bounties->GetRowCount() > 1)
                                         {
-                                                pPlayer->ADD_GOSSIP_ITEM(GOSSIP_ICON_BATTLE, "Заказы: ", GOSSIP_SENDER_MAIN, 1);
+                                                pPlayer->ADD_GOSSIP_ITEM(GOSSIP_ICON_BATTLE, "Orders: ", GOSSIP_SENDER_MAIN, 1);
                                                 do
                                                 {
                                                         Field * fields = Bounties->Fetch();
@@ -235,7 +235,7 @@ class BountyHunter : public CreatureScript
                                         }
                                         else
                                         {
-                                                pPlayer->ADD_GOSSIP_ITEM(GOSSIP_ICON_BATTLE, "Заказы: ", GOSSIP_SENDER_MAIN, 1);
+                                                pPlayer->ADD_GOSSIP_ITEM(GOSSIP_ICON_BATTLE, "Orders: ", GOSSIP_SENDER_MAIN, 1);
                                                 Field * fields = Bounties->Fetch();
                                                 std::string option;
                                                 QueryResult name = CharacterDatabase.PQuery("SELECT name FROM characters WHERE guid='%u'", fields[0].GetUInt64());
@@ -251,7 +251,7 @@ class BountyHunter : public CreatureScript
 #if SET_CURRENCY == 2
                                         if(     Bounties->GetRowCount() > 1)
                                         {
-                                                pPlayer->ADD_GOSSIP_ITEM(GOSSIP_ICON_BATTLE, "Заказы: ", GOSSIP_SENDER_MAIN, 1);
+                                                pPlayer->ADD_GOSSIP_ITEM(GOSSIP_ICON_BATTLE, "Orders: ", GOSSIP_SENDER_MAIN, 1);
                                                 do
                                                 {
                                                         Field * fields = Bounties->Fetch();
@@ -267,7 +267,7 @@ class BountyHunter : public CreatureScript
                                         }
                                         else
                                         {
-                                                pPlayer->ADD_GOSSIP_ITEM(GOSSIP_ICON_BATTLE, "Заказы: ", GOSSIP_SENDER_MAIN, 1);
+                                                pPlayer->ADD_GOSSIP_ITEM(GOSSIP_ICON_BATTLE, "Orders: ", GOSSIP_SENDER_MAIN, 1);
                                                 Field * fields = Bounties->Fetch();
                                                 std::string option;
                                                 QueryResult name = CharacterDatabase.PQuery("SELECT name FROM characters WHERE guid='%u'", fields[0].GetUInt64());
