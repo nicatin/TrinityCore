@@ -138,14 +138,14 @@ class spectator : public CreatureScript
         HONOR_COST = sWorld->getIntConfig(CONFIG_ARENA_SPECTATOR_PRICE_HONOR);
         if (player->InBattlegroundQueue())
         {
-            pCreature->MonsterWhisper("Выйти с очередей на арены/бг!", player->GetGUID(), true);
+            pCreature->MonsterWhisper("You are join BG or ARENA please leave que", player->GetGUID(), true);
             player->CLOSE_GOSSIP_MENU();
             return false;
         }
         if (player->GetHonorPoints() < HONOR_COST)
         {
             char honorprice[80];
-            snprintf (honorprice, 80, "Вам необходимо %u хонора", HONOR_COST);
+            snprintf (honorprice, 80, "You need %u for Honor", HONOR_COST);
             pCreature->MonsterWhisper(honorprice, player->GetGUID(), true);
             player->CLOSE_GOSSIP_MENU();
             return false;
@@ -158,25 +158,25 @@ class spectator : public CreatureScript
             case 0:
             {
                 //"Никого нет на арене, идите спать";
-                player->ADD_GOSSIP_ITEM( 7, "Арена пуста", GOSSIP_SENDER_MAIN, 1224);
+                player->ADD_GOSSIP_ITEM( 7, "Arena is empty", GOSSIP_SENDER_MAIN, 1224);
                 break;
             }
             default:
             {
                 //"Ввести никнейм"
-                player->ADD_GOSSIP_ITEM_EXTENDED(0, "Введите ник для просмотра", GOSSIP_SENDER_MAIN, 1001, "", 0, true);
+                player->ADD_GOSSIP_ITEM_EXTENDED(0, "Spectate game of specific person", GOSSIP_SENDER_MAIN, 1001, "", 0, true);
                 if (var & 1)
                 {
-                    player->ADD_GOSSIP_ITEM(0, "2x2", GOSSIP_SENDER_MAIN, 1002);
+                    player->ADD_GOSSIP_ITEM(0, "Spectate 2vs2 Rated Games", GOSSIP_SENDER_MAIN, 1002);
                 }
                 if (var & 2)
                 {
-                    player->ADD_GOSSIP_ITEM(0, "3x3", GOSSIP_SENDER_MAIN, 1003);
+                    player->ADD_GOSSIP_ITEM(0, "Spectate 3vs3 Rated Games", GOSSIP_SENDER_MAIN, 1003);
                 }
                 player->twovtwo = twovtwo;
             }
         }
-        player->ADD_GOSSIP_ITEM( 4, "Счастливого пути!", GOSSIP_SENDER_MAIN, 1224);
+        player->ADD_GOSSIP_ITEM( 4, "Bye!", GOSSIP_SENDER_MAIN, 1224);
         player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE,pCreature->GetGUID());
         return true;
     }
@@ -245,8 +245,8 @@ class spectator : public CreatureScript
                         ++j;
                     }
                     if (moar)
-                        player->ADD_GOSSIP_ITEM( 7, "Еще", GOSSIP_SENDER_MAIN, 1300+i);
-                    player->ADD_GOSSIP_ITEM( 4, "Вернуться", GOSSIP_SENDER_MAIN, 1225);
+                        player->ADD_GOSSIP_ITEM( 7, "Next Page", GOSSIP_SENDER_MAIN, 1300+i);
+                    player->ADD_GOSSIP_ITEM( 4, "Previous page", GOSSIP_SENDER_MAIN, 1225);
                     player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE,pCreature->GetGUID());
                     break;
                 }
