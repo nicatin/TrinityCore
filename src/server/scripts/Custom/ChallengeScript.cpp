@@ -1,3 +1,4 @@
+//Challenge script for trinitycore 3.3.5a
 #include "ScriptPCH.h"
 #include "BattlegroundMgr.h"
 #include "DisableMgr.h"
@@ -74,7 +75,7 @@ public:
                 return false;
         }
 
-        handler->PSendSysMessage("Mode changed.");
+        handler->PSendSysMessage("Mode changed...");
         return true;
     }
 
@@ -87,7 +88,7 @@ public:
             option->changed = true;
         }
 
-        handler->PSendSysMessage("Challenge enabled.");
+        handler->PSendSysMessage("Challenge enabled...");
         return true;
     }
 
@@ -100,7 +101,7 @@ public:
             option->changed = true;
         }
 
-        handler->PSendSysMessage("Challenge disabled.");
+        handler->PSendSysMessage("Challenge disabled...");
         return true;
     }
 
@@ -109,7 +110,7 @@ public:
         uint64 challengerGuid = handler->GetSession()->GetPlayer()->challengeData->challenger;
         if (!challengerGuid)
         {
-            handler->PSendSysMessage("You haven`t challenger.");
+            handler->PSendSysMessage("You haven`t challenger...");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -117,14 +118,14 @@ public:
         Player *challenger = ObjectAccessor::FindPlayer(challengerGuid);
         if (!challenger)
         {
-            handler->PSendSysMessage("Cant find challenger. Offline?");
+            handler->PSendSysMessage("Cant find challenger. Offline???");
             handler->SetSentErrorMessage(true);
             return false;
         }
 
         if (!sChallengeMgr->InviteGroupsToArena(handler->GetSession()->GetPlayer(), challenger, (ArenaChallengeType)handler->GetSession()->GetPlayer()->challengeData->challengeType))
         {
-            handler->PSendSysMessage("Oops! Cant join to queue.");
+            handler->PSendSysMessage("Oops! Cant join to queue...");
             handler->SetSentErrorMessage(true);
             return false;
         }
