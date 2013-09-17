@@ -1,3 +1,4 @@
+//**Challenge script created by SymbolixDEV - Shaby ...... / Skype : found3rr
 //Challenge script for trinitycore 3.3.5a
 #include "ScriptPCH.h"
 #include "BattlegroundMgr.h"
