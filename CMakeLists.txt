@@ -1,4 +1,3 @@
-# Copyright (C) 2010-2011 Izb00shka <http://izbooshka.net/>
 # Copyright (C) 2005-2010 Trinity <http://www.trinitycore.org/>
 #
 # This file is free software; as a special exception the author gives
